@@ -1,0 +1,79 @@
+body{
+				margin: 0;
+				padding: 0;
+			}
+			.shuru{
+				margin: 30px auto;
+				width: 300px;
+				height: 40px;
+				border-radius: 20px;
+				font-size: 20px;
+			}
+			/*将box-sizing设置为border-box，可令浏览器呈现出带有指定宽度和高度的框，并把边框和内边距放入框中。*/
+			.shuru input{
+				-webkit-box-sizing: border-box;
+				  -moz-box-sizing: border-box;
+				  box-sizing: border-box;
+				  width: 100%;
+			/*calc()这个功能可以让em、px，%等单位进行加减*/
+				  height: -webkit-calc(3em + 2px);
+				  height: calc(3em + 2px);
+				  margin: 0 0 1em;
+				  padding: 1em;
+				  border: 1px solid #ccc;
+				  border-radius: 1.5em;
+				  background: #fff;
+				  resize: none;
+				  outline: none;
+			}
+			/*聚焦时，边框颜色设为红色*/
+			.shuru input[type="text"][required]:focus{
+				border-color: red;
+			}
+			/*聚焦时，label中字体颜色为绿色*/
+			input[type="text"][required]:focus+label[placeholder]:before{
+				color: green;
+			}
+			/*text聚焦，且输入内容合法时，label中的内容上移20px的距离，时间为0.2秒，同时字体大小变为原来的0.8*/
+			input[type="text"][required]:focus+label[placeholder]:before,
+			input[type="text"][required]:valid+label[placeholder]:before{
+				
+				-webkit-transition-delay: 0.2s;
+				-moz-transition-delay: 0.2s;
+				-webkit-transform: translate(0,-20px) scale(0.8,0.8);
+				-moz-transform: translate(0,-20px) scale(0.8,0.8);
+			}
+			/*当input里面的内容不合法时（未输入任何东西），label里的内容为alt中的内容，即‘请输入内容’*/
+			input[type="text"][required]:invalid + label[placeholder][alt]:before {
+				content: attr(alt);
+			}
+			/*调整，使label中的字体居中*/
+			input[type="text"][required]+label[placeholder]{
+				display: block;
+				pointer-events: none;
+				line-height:40px;
+				margin-top: -webkit-calc(-54px);
+  				margin-top: calc(-54px);
+  				margin-left: calc(16px);
+			}
+			
+			input[type="text"][required]+label[placeholder]:before{
+				/*输入框中内容合法时，label中文字改为“内容”*/
+				content:attr(placeholder);
+				display: inline-block;
+				margin: 0 calc(1em + 2px);
+				padding: 0px 5px;
+				color: #999;
+				transition: 3s ease-in-out;
+				-webkit-transition: 3s ease-in-out;
+				/*背景图片在哪？我没找到。。。。不会是背景颜色吧。。。。。。*/
+				background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ffffff));
+				background-image: -webkit-linear-gradient(top, #ffffff, #ffffff);
+				background-image: linear-gradient(to bottom, #ffffff, #ffffff);
+				/*控制背景大小*/
+				-webkit-background-size: 100% 5px;
+  				background-size: 100% 5px;
+  				background-repeat: no-repeat;
+				/*设置背景图片居中，作用是让label中的内容能遮盖边框线*/
+  				background-position: center;
+			}
